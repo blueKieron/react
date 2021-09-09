@@ -15,8 +15,19 @@
     <!-- 引入prop-types，用于对组件标签属性进行限制 -->
     <script type="text/javascript" src="js/prop-types.js"></script>
     <script type="text/babel">
-      class Person extends React.Component{
-        render(){
+      class Person extends React.Component {
+        // 对属性进行类型、必要性的限制
+        static propTypes = {
+          name: PropTypes.string.isRequired,
+          age: PropTypes.number,
+          speak: PropTypes.func, // 限制speak为函数
+        };
+        // 指定属性默认值
+        static defaultProps = {
+          sex: "no sex",
+          age: 18,
+        };
+        render() {
           // props是只读的
           // this.props.name = 'jack' // 报错
           return (
@@ -25,24 +36,17 @@
               <li>age: {this.props.age}</li>
               <li>sex: {this.props.sex}</li>
             </ul>
-          )
+          );
         }
       }
-      // 对标签属性进行类型、必要性的限制
-      Person.propTypes = {
-        name: PropTypes.string.isRequired,
-        age: PropTypes.number,
-        speak: PropTypes.func // 限制speak为函数
-      }
-      // 指定默认标签默认值
-      Person.defaultProps ={
-        sex: 'no sex',
-        age: 18
-      }
-      ReactDOM.render(<Person name='tom' age={18} speak={speak}/>, document.getElementById("test"))
-      
-      function speak(){
-        console.log('speak')
+
+      ReactDOM.render(
+        <Person name="tom" age={18} speak={speak} />,
+        document.getElementById("test")
+      );
+
+      function speak() {
+        console.log("speak");
       }
     </script>
   </body>
