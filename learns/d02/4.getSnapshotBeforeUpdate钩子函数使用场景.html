@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .list {
+        width: 200px;
+        height: 150px;
+        background-color: skyblue;
+        overflow: auto;
+      }
+      .news {
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="test"></div>
+
+    <script
+      type="text/javascript"
+      src="../js/react-17.0.1/react17.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/react-17.0.1/react-dom17.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../js/react-17.0.1/babel.min.js"
+    ></script>
+    <script type="text/babel">
+      class NewsList extends React.Component {
+        state = { news: [] };
+
+        componentDidMount() {
+            setInterval(() => {
+                const { news} = this.state
+                const n = '新闻' + (news.length + 1)
+                this.setState({news: [n, ...news]})
+            },1000)
+        }
+
+        getSnapshotWillUpdate() {
+            return this.refs.list.scrollHeight
+        }
+
+        componentDidUpdate(){
+           this.refs.list.scrollTop += this.refs.list.scrollHeight 
+        }
+        render() {
+          return (
+            <div className="list" ref='list'>
+              {
+                  this.state.news.map( (n,index) => {
+                      return <div className="news" key={index}>{n}</div>
+                  })
+              }
+              
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(<NewsList />, document.getElementById("test"));
+    </script>
+  </body>
+</html>

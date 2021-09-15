@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="test"></div>
+
+    <script type="text/javascript" src="../js/react-16.0.8/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-16.0.8/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/react-16.0.8/babel.min.js"></script>
+    <script type="text/babel">
+      /*
+        高阶函数：如果一个函数符合下面两个规范中的任何一个，那该函数就是高阶函数
+          1.若a函数，接收的参数是一个函数，那么a就可以称之为高阶函数
+          2.若a函数，调用的返回值依然是一个函数，那么a就可以称之为高阶函数
+        
+        函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式
+       */
+      class Login extends React.Component {
+        state = {
+          username: "",
+          psd: "",
+        };
+        getFormData = (type) => {
+          return (event) => {
+            this.setState({ [type]: event.target.value });
+          };
+        };
+        handleSubmit = (e) => {
+          e.preventDefault();
+          const { username, psd } = this.state;
+          alert(`username:${username}, psd:${psd}`);
+        };
+        render() {
+          return (
+            <form action="http://www.atguigu.com" onSubmit={this.handleSubmit}>
+              name:{" "}
+              <input
+                onChange={this.getFormData("username")}
+                type="text"
+                name="username"
+              />
+              psd:{" "}
+              <input
+                onChange={this.getFormData("psd")}
+                type="password"
+                name="psd"
+              />
+              <button>登录</button>
+            </form>
+          );
+        }
+      }
+      ReactDOM.render(<Login />, document.getElementById("test"));
+    </script>
+  </body>
+</html>
