@@ -43,3 +43,21 @@
 ## 八、嵌套路由
     1.注册子路由时要写上父路由的path值
     2.路由的匹配是按照注册路由的顺序进行的
+
+## 九、向路由组件传递参数
+    1.params参数
+      路由链接（携带参数）:<Link to={`/home/message/detail/${item.id}/${item.title}`}>{item.title}</Link>
+      注册路由（声明接收）:<Route path="/home/message/detail/:id/:title" component={Detail} />
+      接受参数 : const { id, title } = this.props.match.params;
+    
+    2.search参数
+      路由链接（携带参数）:<Link to={`/home/message/detail?id=${item.id}&title=${item.title}`}>{item.title}</Link>
+      注册路由（无需声明接收）:<Route path="/home/message/detail" component={Detail} />
+      接受参数 : const {search} = this.props.location
+      备注 : 获取到的search是urlencode编码字符串 需要借助qs解析
+
+    3.search参数
+      路由链接（携带参数）: <Link to={{pathname:'/home/message/detail',state:{id:item.id,title:item.tile}}}>{item.title}</Link>
+      注册路由（无需声明接收）:<Route path="/home/message/detail" component={Detail} />
+      接受参数 : const {id,title} = this.props.location.state
+      备注 : 刷新也可以保留住参数
