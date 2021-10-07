@@ -24,7 +24,7 @@ class index extends Component {
                 {/* <Link to={`/home/message/detail?id=${item.id}&title=${item.title}`}>{item.title}</Link> */}
                 
                 {/* 向路由组件传递state参数 */}
-                <Link replace={true} to={{pathname:'/home/message/detail',state:{id:item.id,title:item.tile}}}>{item.title}</Link>
+                <Link replace={true} to={{pathname:'/home/message/detail',state:{id:item.id,title:item.title}}}>{item.title}</Link>
               </li>
             );
           })}
