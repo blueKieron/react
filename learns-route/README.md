@@ -61,7 +61,15 @@
       注册路由（无需声明接收）:<Route path="/home/message/detail" component={Detail} />
       接受参数 : const {id,title} = this.props.location.state
       备注 : 刷新也可以保留住参数
-## 十、BrowserRouter与HashRouter的区别
+
+## 十、编程式路由导航
+    借助this.props.history对象上的api对操作路由跳转、前进、后退
+    -this.props.history.push()
+    -this.props.history.repalce()
+    -this.props.history.goBack()
+    -this.props.history.goForword()
+    -this.props.history.go()
+## 十一、BrowserRouter与HashRouter的区别
     1.底层原理不一样：
       BrowserRouter使用的是H5的history API，不兼容IE9及以下版本。 HashRouter使用的是URL的哈希值。
     2.path表现形式不一样
