@@ -2,13 +2,13 @@
 // import store from './store'
 import {INCREMENT, DECREMENT} from '../constant'
 // 同步action 就是指action的值为一般对象  
-export const createIncrementAction = data => ({type: INCREMENT, data})
-export const createDecrementAction = data => ({type: DECREMENT, data})
+export const increment = data => ({type: INCREMENT, data})
+export const decrement = data => ({type: DECREMENT, data})
 // 异步action 就是指action的值为函数,异步action中一般都会调用同步action
-export const createIncrementAsyncAction = (data,t) => {
+export const incrementAsync = (data,t) => {
   return (dispatch) => {
     setTimeout(() => {
-      dispatch(createIncrementAction(data))
+      dispatch(increment(data))
     },t)
   }
 }

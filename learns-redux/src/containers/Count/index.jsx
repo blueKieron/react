@@ -2,9 +2,9 @@
 // import CountUI from "../../components/Count";
 import React, { Component } from "react";
 import {
-  createIncrementAction,
-  createDecrementAction,
-  createIncrementAsyncAction,
+  increment,
+  decrement,
+  incrementAsync,
 } from "../../redux/actions/count";
 // 引入store
 import store from "../../redux/store";
@@ -18,19 +18,19 @@ class CountUI extends Component {
 
   incrment = () => {
     const { value } = this.selectNumber;
-    this.props.add(value*1)
+    this.props.increment(value*1)
   };
   decrment = () => {
     const { value } = this.selectNumber;
-    this.props.sub(value*1)
+    this.props.decrement(value*1)
   };
   incrmentIfOdd = () => {
     const { value } = this.selectNumber;
-    if(this.props.count % 2 !== 0) this.props.add(value*1)
+    if(this.props.count % 2 !== 0) this.props.increment(value*1)
   };
   incrmentAsync = () => {
     const { value } = this.selectNumber;
-    this.props.addAsync(value*1,500)
+    this.props.incrementAsync(value*1,500)
   };
   render() {
     return (
@@ -61,9 +61,9 @@ const mapStateToProps = (state) => ({ count: state.count, persons: state.persons
 const CountContainer = connect(
   mapStateToProps,
   {
-    add:createIncrementAction,
-    sub:createDecrementAction,
-    addAsync:createIncrementAsyncAction,
+    increment,
+    decrement,
+    incrementAsync
   }
 )(CountUI);
 export default CountContainer;
