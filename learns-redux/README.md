@@ -40,7 +40,8 @@
 
 ## 5.求和案例_react-redux优化
 （1）.容器组件和UI组件整合一个文件
-（2）.无需自己给容器组件传递store，给《App/》包裹一个《Provider store={store}》即可。
+（2）.无需自己给容器组件传递store，给`<App/>`包裹一个`<Provider store={store}></Provider>`即可。
+
 （3）.使用了react-redux后也不用再自己检测redux中状态的改变了，容器组件可以自动完成这个工作。 
 （4）.mapDispatchToProps也可以简单的写成一个对象
 （5）.一个组件要和redux“打交道”要经过那几步？

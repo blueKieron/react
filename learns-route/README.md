@@ -69,6 +69,14 @@
     -this.props.history.goBack()
     -this.props.history.goForword()
     -this.props.history.go()
+##  withRouter
+    可以加工一般组件，让一般组件具备路由组件所特有的API，返回值是一个新组件
+    ```jsx
+    import {withRouter} from 'react-router-dom'
+
+    class Header extends Component {}
+    export default withRouter(Header)
+    ```
 ## 十一、BrowserRouter与HashRouter的区别
     1.底层原理不一样：
       BrowserRouter使用的是H5的history API，不兼容IE9及以下版本。 HashRouter使用的是URL的哈希值。
